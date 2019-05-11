@@ -1,4 +1,4 @@
-# Example for Using Customized Application Layer Protocols with VPROXY
+# Example for using customized application layer protocols with vproxy
 
 ## What does this example do
 
@@ -10,16 +10,14 @@
 
 ## How to run:
 
+You need java 11.
+
+Then:
+
 ```
 java -jar example.jar
 ```
 
-or run with the main class
-
-```
-net.cassite.vproxy_application_layer_protocol_example.Main
-```
-
 ## How can I get the example executable file
 
-You may directly download the zip package in the release page, which contains a script for running the example.
+You may directly download the jar from the [release page](https://github.com/wkgcass/vproxy-customized-application-layer-protocols-example/releases).
