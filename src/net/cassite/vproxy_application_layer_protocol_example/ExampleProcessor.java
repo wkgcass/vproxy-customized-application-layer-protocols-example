@@ -1,6 +1,5 @@
 package net.cassite.vproxy_application_layer_protocol_example;
 
-import net.cassite.vproxy.app.Config;
 import net.cassite.vproxy.processor.Processor;
 import net.cassite.vproxy.util.ByteArray;
 
@@ -52,6 +51,12 @@ public class ExampleProcessor implements Processor<ExampleContext, ExampleSubCon
     }
 
     @Override
+    public boolean expectNewFrame(ExampleContext ctx, ExampleSubContext sub) {
+        // when it's reading head, it's expecting a new frame
+        return sub.isReadingHead;
+    }
+
+    @Override
     public int len(ExampleContext ctx, ExampleSubContext subCtx) {
         if (subCtx.isReadingHead) {
             return 3; // read 3 bytes of data
@@ -67,6 +72,9 @@ public class ExampleProcessor implements Processor<ExampleContext, ExampleSubCon
         if (subCtx.payloadLength > 16384) {
             // you may end the process if input data is invalid
             throw new Exception("the payload is too long: " + subCtx.payloadLength);
+        }
+        if (subCtx.payloadLength == 0) { // if no payload, then it's expecting another head
+            subCtx.isReadingHead = true;
         }
         return data; // send exactly the same data (frame head) to the other endpoint
     }
@@ -97,10 +105,5 @@ public class ExampleProcessor implements Processor<ExampleContext, ExampleSubCon
     @Override
     public ByteArray connected(ExampleContext ctx, ExampleSubContext subCtx) {
         return null; // do not send any data when connection establishes
-    }
-
-    @Override
-    public int PROXY_ZERO_COPY_THRESHOLD() {
-        return Config.recommendedMinPayloadLength;
     }
 }
