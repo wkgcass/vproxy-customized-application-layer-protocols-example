@@ -3,6 +3,8 @@ package net.cassite.vproxy_application_layer_protocol_example;
 import net.cassite.vproxy.processor.Processor;
 import net.cassite.vproxy.util.ByteArray;
 
+import java.net.InetSocketAddress;
+
 /*
  * The protocol:
  * +-------------+-------------------------------+
@@ -32,12 +34,12 @@ public class ExampleProcessor implements Processor<ExampleContext, ExampleSubCon
     }
 
     @Override
-    public ExampleContext init() {
+    public ExampleContext init(InetSocketAddress ignore) {
         return new ExampleContext();
     }
 
     @Override
-    public ExampleSubContext initSub(ExampleContext ctx, int connId) {
+    public ExampleSubContext initSub(ExampleContext ctx, int connId, InetSocketAddress ignore) {
         return new ExampleSubContext(connId);
     }
 
