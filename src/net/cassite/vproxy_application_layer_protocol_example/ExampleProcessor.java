@@ -1,7 +1,7 @@
 package net.cassite.vproxy_application_layer_protocol_example;
 
-import net.cassite.vproxy.processor.Processor;
-import net.cassite.vproxy.util.ByteArray;
+import vproxy.processor.Processor;
+import vproxy.util.ByteArray;
 
 import java.net.InetSocketAddress;
 

@@ -1,6 +1,6 @@
 package net.cassite.vproxy_application_layer_protocol_example;
 
-import net.cassite.vproxy.processor.DefaultProcessorRegistry;
+import vproxy.processor.DefaultProcessorRegistry;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -94,7 +94,7 @@ public class Main {
         DefaultProcessorRegistry.getInstance().register(new ExampleProcessor());
 
         // start vproxy, you may directly pass `args` to vproxy Main when using
-        net.cassite.vproxy.app.Main.main(new String[]{
+        vproxy.app.Main.main(new String[]{
             "resp-controller", "127.0.0.1:16379", "mypassw0rd",
             "noStdIOController",
             "sigIntDirectlyShutdown",
