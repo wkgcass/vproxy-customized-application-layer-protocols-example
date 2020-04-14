@@ -113,12 +113,12 @@ public class Main {
             "AUTH mypassw0rd",
             "add event-loop-group elg0",
             "add event-loop el0 to event-loop-group elg0",
-            "add server-groups sgs0",
+            "add upstream ups0",
             "add server-group sg0 timeout 1000 period 500 up 2 down 3 event-loop-group elg0",
-            "add server-group sg0 to server-groups sgs0 weight 10",
+            "add server-group sg0 to upstream ups0 weight 10",
             "add server svr1 to server-group sg0 address 127.0.0.1:" + server1 + " weight 10",
             "add server svr2 to server-group sg0 address 127.0.0.1:" + server2 + " weight 10",
-            "add tcp-lb lb0 acceptor-elg elg0 event-loop-group elg0 address 127.0.0.1:" + lbPort + " server-groups sgs0 " +
+            "add tcp-lb lb0 acceptor-elg elg0 event-loop-group elg0 address 127.0.0.1:" + lbPort + " upstream ups0 " +
                 "protocol example"
         )) {
             output.write((cmd + "\r\n").getBytes());

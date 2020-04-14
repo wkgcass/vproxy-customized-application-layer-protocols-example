@@ -1,5 +1,6 @@
 package net.cassite.vproxy_application_layer_protocol_example;
 
+import vproxy.processor.Hint;
 import vproxy.processor.Processor;
 import vproxy.util.ByteArray;
 
@@ -97,6 +98,11 @@ public class ExampleProcessor implements Processor<ExampleContext, ExampleSubCon
     @Override
     public int connection(ExampleContext ctx, ExampleSubContext subCtx) {
         return ctx.writeToConn;
+    }
+
+    @Override
+    public Hint connectionHint(ExampleContext exampleContext, ExampleSubContext exampleSubContext) {
+        return null; // leave it empty in this case, it's used for choosing the backend connection
     }
 
     @Override
